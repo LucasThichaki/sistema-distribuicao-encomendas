@@ -67,10 +67,12 @@ def movimenta_veiculo(veiculo, ponto):
         #Entrega encomenda:
         if len(veiculo.carga) > 0:
             pos = 0
+            removidos = 0
             for encomenda in veiculo.carga:
                 if encomenda.destino == ponto:
                     #Descarrega a encomenda
-                    descarregada = veiculo.carga.pop(pos)
+                    descarregada = veiculo.carga.pop(pos - removidos)
+                    removidos += 1
                     tempo_descarregamento = random.randint(200,2000)
                     time.sleep(tempo_descarregamento/1000)
                     existe_encomenda -= 1
